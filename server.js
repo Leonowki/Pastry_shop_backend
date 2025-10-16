@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import productRoutes from "./routes/productRoutes.js";
+
 dotenv.config();
 
 const app = express();
@@ -15,10 +17,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Test API route
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from Express backend!" });
-});
+// Routes
+app.use("/getproducts", productRoutes);
+
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
